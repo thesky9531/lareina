@@ -1,6 +1,7 @@
 package email
 
 import (
+	"github.com/thesky9531/lareina/log"
 	"gopkg.in/gomail.v2"
 )
 
@@ -31,12 +32,14 @@ func (m *GoMailConfig) SetGoMailBody(body string) {
 	m.Body = body
 }
 
-func (m GoMailConfig) SendMail() error {
+func (m GoMailConfig) SendMail() {
 	mail := gomail.NewMessage()
 	mail.SetHeader("From", m.Sender)
 	mail.SetHeader("To", m.RecipientList...)
 	mail.SetHeader("Subject", m.Title)
 	mail.SetBody(`text/html`, m.Body)
 	err := gomail.NewDialer(m.SMTPAddr, m.SMTPPort, m.Sender, m.SPassword).DialAndSend(mail)
-	return err
+	if err != nil {
+		log.ErrLog("邮件发送失败，err：", err)
+	}
 }
