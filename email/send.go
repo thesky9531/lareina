@@ -21,7 +21,7 @@ type mailEntity struct {
 func NewMailEntity() (m mailEntity) {
 	return m
 }
-func (m mailEntity) SetMailEntity(user, password, host, to, subject, body, mailtype string) {
+func (m *mailEntity) SetMailEntity(user, password, host, to, subject, body, mailtype string) {
 	m.user = user
 	m.password = password
 	m.host = host
