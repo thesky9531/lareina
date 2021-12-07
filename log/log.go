@@ -59,3 +59,9 @@ func Debugf(str string, args ...interface{}) {
 	fmt.Printf("\n")
 	logrus.Debugf(str, args...)
 }
+
+func Fatalf(str string, args ...interface{}) {
+	fmt.Printf(str, args...)
+	fmt.Printf("\n")
+	logrus.Fatalf(str, args...)
+}
