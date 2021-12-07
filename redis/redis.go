@@ -18,7 +18,7 @@ type RedisSession struct {
 	prefix string
 }
 
-func LoadRedisSession(c RedisConfig) error {
+func LoadRedisSession(c *RedisConfig) error {
 	session = &RedisSession{}
 
 	session.pool = &redis.Pool{
